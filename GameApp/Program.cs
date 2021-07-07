@@ -70,7 +70,7 @@ namespace GameApp
                                 //BasicLevelLib.BasicLevelType objref=new BasicLevelLib.BasicLevelType() ; Early Binding
                                 Object objRef = System.Activator.CreateInstance(intermedaiteLevelTypeClassRef); //LateBinding Code
                                                                                                                 //Discove Method
-                                System.Reflection.MethodInfo _methodRef = intermedaiteLevelTypeClassRef.GetMethod("Play");
+                                System.Reflection.MethodInfo _methodRef = intermedaiteLevelTypeClassRef.GetMethod("Begin");
                                 if (!_methodRef.IsStatic)
                                 {
                                     //Invoke NonStatic Method
@@ -97,7 +97,7 @@ namespace GameApp
                                 //BasicLevelLib.BasicLevelType objref=new BasicLevelLib.BasicLevelType() ; Early Binding
                                 Object objRef = System.Activator.CreateInstance(advacncedLevelTypeClassRef); //LateBinding Code
                                                                                                              //Discove Method
-                                System.Reflection.MethodInfo _methodRef = advacncedLevelTypeClassRef.GetMethod("Play");
+                                System.Reflection.MethodInfo _methodRef = advacncedLevelTypeClassRef.GetMethod("Start");
                                 if (!_methodRef.IsStatic)
                                 {
                                     //Invoke NonStatic Method
