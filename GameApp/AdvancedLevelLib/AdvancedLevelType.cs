@@ -8,7 +8,7 @@ namespace AdvancedLevelLib
 {
     public class AdvancedLevelType
     {
-        public void Begin(string userName, int creaditPoints)
+        public void Start(string userName, int creaditPoints)
         {
             string message = $"game started {userName} Level:Advanced {creaditPoints}";
         }
