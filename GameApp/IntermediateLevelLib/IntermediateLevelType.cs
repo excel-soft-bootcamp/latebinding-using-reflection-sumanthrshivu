@@ -8,7 +8,7 @@ namespace IntermediateLevelLib
 {
     public class IntermediateLevelType
     {
-        public void Play(string userName, int creaditPoints)
+        public void Begin(string userName, int creaditPoints)
         {
             string message = $"game started {userName} Level:Intermediate {creaditPoints}";
         }
