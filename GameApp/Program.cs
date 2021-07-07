@@ -23,46 +23,102 @@ namespace GameApp
             string displayMessage = $"Enter Your Choice {(int)Options.BASIC}->Basic,{(int)Options.INTERMEDIATE}->Intermediate,{(int)Options.ADVANCED}->Advanced";
             Console.WriteLine(displayMessage);
             Options _choice =(Options)Int32.Parse( Console.ReadLine());
-            switch (_choice)
+            try
             {
-                case Options.BASIC:
-                    Console.WriteLine("Basic Level");
-                    //Use Reflection  
-                    //Assembly Load
-                    System.Reflection.Assembly basicLevelLib = 
-      System.Reflection.Assembly.LoadFile(@"C:\Users\user\source\repos\excelsoft\Examples\GameApp\bin\Debug\LevelLibs\BasicLevelLib.dll");
-                    // Search For Class - BasicLevelType
-                   System.Type basicLevelTypeClassRef= basicLevelLib.GetType("BasicLevelLib.BasicLevelType");
-                    if (basicLevelTypeClassRef != null)
-                    {
-                        if (basicLevelTypeClassRef.IsClass)
+                switch (_choice)
+                {
+                    case Options.BASIC:
+                        Console.WriteLine("Basic Level");
+
+                        //Use Reflection  
+                        //Assembly Load
+                        System.Reflection.Assembly basicLevelLib =
+                        System.Reflection.Assembly.LoadFile(@"F:\c# training\latebinding-using-reflection-sumanthrshivu-main\GameApp\bin\Debug\NewLevelLibs\BasicLevelLib.dll");
+                        // Search For Class - BasicLevelType
+                        System.Type basicLevelTypeClassRef = basicLevelLib.GetType("BasicLevelLib.BasicLevelType");
+                        if (basicLevelTypeClassRef != null)
                         {
-                            //Instantiate Type
-                            //BasicLevelLib.BasicLevelType objref=new BasicLevelLib.BasicLevelType() ; Early Binding
-                           Object objRef =System.Activator.CreateInstance(basicLevelTypeClassRef); //LateBinding Code
-                            //Discove Method
-                          System.Reflection.MethodInfo _methodRef=  basicLevelTypeClassRef.GetMethod("Play");
-                            if (!_methodRef.IsStatic)
+                            if (basicLevelTypeClassRef.IsClass)
                             {
-                                //Invoke NonStatic Method
-                                // string Play(string playerName, int earlierPoints){}
-                                //object result=  _methodRef.Invoke(objRef, new object[] {"Tom",20 });
-                                object result =  _methodRef.Invoke(objRef, new object[] {});
-                                Console.WriteLine(result.ToString());
+                                //Instantiate Type
+                                //BasicLevelLib.BasicLevelType objref=new BasicLevelLib.BasicLevelType() ; Early Binding
+                                Object objRef = System.Activator.CreateInstance(basicLevelTypeClassRef); //LateBinding Code
+                                                                                                         //Discove Method
+                                System.Reflection.MethodInfo _methodRef = basicLevelTypeClassRef.GetMethod("Play");
+                                if (!_methodRef.IsStatic)
+                                {
+                                    //Invoke NonStatic Method
+                                    // string Play(string playerName, int earlierPoints){}
+                                    //object result=  _methodRef.Invoke(objRef, new object[] {"Tom",20 });
+                                    object result = _methodRef.Invoke(objRef, new object[] { "sumanth", 200 });
+                                    Console.WriteLine(result.ToString());
+                                }
+
                             }
 
                         }
+                        break;
+                    case Options.INTERMEDIATE:
+                        Console.WriteLine("Intermediate Level");
+                        System.Reflection.Assembly intermediateLevelLib = new System.Reflection.Assembly.LoadFile(@"F:\c# training\latebinding-using-reflection-sumanthrshivu-main\GameApp\bin\Debug\NewLevelLibs\IntermediateLevelLib.dll");
+                        System.Type intermedaiteLevelTypeClassRef = intermediateLevelLib.GetType("IntermediateLevelLib.IntermediateLevelType");
+                        if (intermedaiteLevelTypeClassRef != null)
+                        {
+                            if (intermedaiteLevelTypeClassRef.IsClass)
+                            {
+                                //Instantiate Type
+                                //BasicLevelLib.BasicLevelType objref=new BasicLevelLib.BasicLevelType() ; Early Binding
+                                Object objRef = System.Activator.CreateInstance(intermedaiteLevelTypeClassRef); //LateBinding Code
+                                                                                                                //Discove Method
+                                System.Reflection.MethodInfo _methodRef = intermedaiteLevelTypeClassRef.GetMethod("Play");
+                                if (!_methodRef.IsStatic)
+                                {
+                                    //Invoke NonStatic Method
+                                    // string Play(string playerName, int earlierPoints){}
+                                    //object result=  _methodRef.Invoke(objRef, new object[] {"Tom",20 });
+                                    object result = _methodRef.Invoke(objRef, new object[] { "suhas", 250 });
+                                    Console.WriteLine(result.ToString());
+                                }
 
-                    }
-                     break;
-                case Options.INTERMEDIATE:
-                    Console.WriteLine("Intermediate Level");
-                     break;
-                case Options.ADVANCED:
-                    Console.WriteLine("Advanced Level");
-                    break;
-                
+                            }
+
+                        }
+                        break;
+
+                    case Options.ADVANCED:
+                        Console.WriteLine("Advanced Level");
+                        System.Reflection.Assembly advancedLevelLib = new System.Reflection.Assembly.LoadFile(@"F:\c# training\latebinding-using-reflection-sumanthrshivu-main\GameApp\bin\Debug\NewLevelLibs\AdvancedLevelLib.dll");
+                        System.Type advacncedLevelTypeClassRef = advancedLevelLib.GetType("advancedLevelLib.advancedLevelType");
+                        if (advacncedLevelTypeClassRef != null)
+                        {
+                            if (advacncedLevelTypeClassRef.IsClass)
+                            {
+                                //Instantiate Type
+                                //BasicLevelLib.BasicLevelType objref=new BasicLevelLib.BasicLevelType() ; Early Binding
+                                Object objRef = System.Activator.CreateInstance(advacncedLevelTypeClassRef); //LateBinding Code
+                                                                                                             //Discove Method
+                                System.Reflection.MethodInfo _methodRef = advacncedLevelTypeClassRef.GetMethod("Play");
+                                if (!_methodRef.IsStatic)
+                                {
+                                    //Invoke NonStatic Method
+                                    // string Play(string playerName, int earlierPoints){}
+                                    //object result=  _methodRef.Invoke(objRef, new object[] {"Tom",20 });
+                                    object result = _methodRef.Invoke(objRef, new object[] { "karthik", 300 });
+                                    Console.WriteLine(result.ToString());
+                                }
+
+                            }
+
+                        }
+                        break;
+                }
+
             }
+            catch (Exception ex)
+            {
+                throw new IndexOutOfRangeException("please select the valid number " + ex);
+            }
+            finally{ }
 
         }
     }
