@@ -26,10 +26,10 @@ namespace GameApp
             {
                 int attempts = 1;
                 bool Option = false;
-
+                Options _choice = (Options)Int32.Parse(Console.ReadLine());
                 while (attempts <= 3 && Option == false)
                 {
-                    Options _choice = (Options)Int32.Parse(Console.ReadLine());
+                    
                     int number = Convert.ToInt32(Option);
                     attempts++;
                     if (number = Option)
