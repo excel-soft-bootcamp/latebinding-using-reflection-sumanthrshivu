@@ -49,14 +49,14 @@ namespace GameApp
 
                             case Options.INTERMEDIATE:
 
-                                Console.WriteLine("Basic Level");
+                                Console.WriteLine("INTERMEDIATELevel");
 
                                 GameLevelsLib.GameLevelsType.GameLevel(@"F:\c# training\latebinding-using-reflection-sumanthrshivu-main\GameApp\bin\Debug\LevelLibs\IntermediateLevelLib.dll", "IntermediateLevelLib.IntermediateLevelType", "Start");
                                 break;
 
                             case Options.ADVANCED:
 
-                                Console.WriteLine("Basic Level");
+                                Console.WriteLine("ADVANCED Level");
 
                                 GameLevelsLib.GameLevelsType.GameLevel(@"F:\c# training\latebinding-using-reflection-sumanthrshivu-main\GameApp\bin\Debug\LevelLibs\AdvancedLevelLib.dll", "AdvancedLevelLib.AdvancedLevelType", "Begin");
                                 break;
