@@ -9,40 +9,46 @@ namespace GameLevelsLib
 {
     public class GameLevelsType
     {
-        public static void GameLevel(string getPath, string getType, string getMethod)
+         public static void GameLevel(string getPath, string getType, string getMethod)
         {
             Assembly executingAssembly = Assembly.LoadFile(getPath);
-            Type _levelsType = executingAssembly.GetType(getType);
-            if (_levelsType != null || _levelsType.IsClass)
+            Type _levelsTypeClassRef = executingAssembly.GetType(getType);
+            if (_levelsTypeClassRef != null && _levelsTypeClassRef.IsClass)
             {
-                object _levelsTypeInstance = Activator.CreateInstance(_levelsType);
+                Object _levelsTypeObjRef = Activator.CreateInstance(_levelsTypeClassRef);
                 
-                MethodInfo _getMethodRef = _levelsType.GetMethod("getMethod");
+                MethodInfo _getMethodRef = _levelsTypeClassRef.GetMethod(getMethod);
                 if (!_getMethodRef.IsStatic)
                 {
-                    if (getMethod == "Play")
+                    if (getMethod =="Play")
                     {
-                        object[] _parameters = new object[0];
-                        string play = (string)_getMethodRef.Invoke(_levelsTypeInstance, _parameters);
-                        Console.WriteLine($"{play} started, Level:Basic ");
-                    }
-                    if (getMethod == "Begin")
-                    {
-                        object[] _parameters = new object[1];
-                        _parameters[0] = "sumanth";
-                        string begin = (string)_getMethodRef.Invoke(_levelsTypeInstance, _parameters);
-                        Console.WriteLine($"{begin} started, Level:Intermediate ");
+                        Object[] _parameters = new Object[0];
+                        string play = (string)_getMethodRef.Invoke(_levelsTypeObjRef, _parameters);
+                        Console.WriteLine($"{play} started");
+                        Console.ReadKey();
                     }
                     if (getMethod == "Start")
                     {
-                        object[] _parameters = new object[2];
+                        Object[] _parameters = new Object[1];
                         _parameters[0] = "sumanth";
-                        _parameters[1] = "619";
-                        string start = (string)_getMethodRef.Invoke(_levelsTypeInstance, _parameters);
-                        Console.WriteLine($"{start} started, Level:Advanced ");
+                        string start = (string)_getMethodRef.Invoke(_levelsTypeObjRef, _parameters);
+                        Console.WriteLine($"{start} started");
+                        Console.ReadKey();
                     }
+                    if (getMethod == "Begin")
+                    {
+                        Object[] _parameters = new Object[2];
+                        _parameters[0] = "sumanth";
+                        _parameters[1] = 619;
+                        string begin = (string)_getMethodRef.Invoke(_levelsTypeObjRef, _parameters);
+                        Console.WriteLine($"{begin} started ");
+                        Console.ReadKey();
+                    }
+
                 }
+
             }
+         
         }
        
     }
